@@ -1,0 +1,134 @@
+<div class="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+
+    <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <span
+          class="text-sm font-bold uppercase tracking-wider text-indigo-600"
+        >
+          Catálogo
+        </span>
+
+        <h1 class="mt-1 text-3xl font-extrabold tracking-tight text-slate-900">
+          Nossos produtos
+        </h1>
+
+        <p class="mt-2 text-slate-500">
+          Confira os produtos disponíveis em nossa loja.
+        </p>
+      </div>
+
+      <span class="w-fit rounded-full bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-600">
+        {{ products().length }} produtos
+      </span>
+    </header>
+
+    <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+      @for (product of products(); track product.id) {
+
+        <article
+          class="group overflow-hidden rounded-2xl border border-slate-200
+                 bg-white shadow-sm transition-all duration-300
+                 hover:-translate-y-1 hover:shadow-xl"
+        >
+
+          <div class="relative h-56 overflow-hidden bg-slate-100">
+
+            <img
+              [src]="product.image"
+              [alt]="product.name"
+              class="h-full w-full object-cover transition-transform
+                     duration-500 group-hover:scale-105"
+            />
+
+            <span
+              class="absolute left-3 top-3 rounded-full bg-white/90
+                     px-3 py-1 text-xs font-bold text-indigo-600
+                     shadow-sm backdrop-blur"
+            >
+              {{ product.category }}
+            </span>
+
+            @if (product.stock === 0) {
+              <span
+                class="absolute right-3 top-3 rounded-full bg-red-500
+                       px-3 py-1 text-xs font-bold text-white"
+              >
+                Esgotado
+              </span>
+            } @else if (product.stock <= 5) {
+              <span
+                class="absolute right-3 top-3 rounded-full bg-amber-500
+                       px-3 py-1 text-xs font-bold text-white"
+              >
+                Últimas unidades
+              </span>
+            }
+
+          </div>
+
+          <!-- Content -->
+          <div class="p-5">
+
+            <h2
+              class="truncate text-lg font-bold text-slate-900"
+              [title]="product.name"
+            >
+              {{ product.name }}
+            </h2>
+
+            <p class="mt-2 line-clamp-2 min-h-12 text-sm leading-6 text-slate-500">
+              {{ product.description }}
+            </p>
+
+            <!-- Price + stock -->
+            <div class="mt-5 flex items-center justify-between gap-3">
+
+              <span class="text-xl font-extrabold text-slate-900">
+                R$ {{ product.price }}
+              </span>
+
+              <span
+                class="text-xs font-semibold"
+                [class.text-emerald-600]="product.stock > 5"
+                [class.text-amber-600]="product.stock > 0 && product.stock <= 5"
+                [class.text-red-600]="product.stock === 0"
+              >
+                @if (product.stock === 0) {
+                  Sem estoque
+                } @else {
+                  {{ product.stock }} em estoque
+                }
+              </span>
+
+            </div>
+
+            <!-- Button -->
+            <button
+              type="button"
+              [disabled]="product.stock === 0"
+              class="mt-5 w-full rounded-xl bg-indigo-600 px-4 py-3
+                     text-sm font-bold text-white shadow-sm
+                     transition-colors hover:bg-indigo-700
+                     focus:outline-none focus:ring-2
+                     focus:ring-indigo-500 focus:ring-offset-2
+                     disabled:cursor-not-allowed
+                     disabled:bg-slate-200
+                     disabled:text-slate-400"
+            >
+              @if (product.stock === 0) {
+                Indisponível
+              } @else {
+                Adicionar ao carrinho
+              }
+            </button>
+
+          </div>
+        </article>
+
+      }
+
+    </section>
+  </div>
+</div>
