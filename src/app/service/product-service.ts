@@ -10,4 +10,8 @@ export class ProductService {
     public getAll(): Observable<ProductType[]> {
         return this.#httpClient.get<ProductType[]>(`${this.API_URL}/products`);
     }
+
+    public getById(id: number): Observable<ProductType> {
+        return this.#httpClient.get<ProductType>(`${this.API_URL}/products/${id}`);
+    }
 }

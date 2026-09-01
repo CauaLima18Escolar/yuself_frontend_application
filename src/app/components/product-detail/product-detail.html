@@ -1,0 +1,55 @@
+<div class="flex w-full h-screen justify-center px-4">
+    <article class="group my-20 grid w-full max-w-5xl grid-cols-2 overflow-hidden rounded-2xl
+                    border border-slate-200 bg-white shadow-sm
+                    transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+        <!-- Imagem -->
+        <div class="relative min-h-[500px] overflow-hidden bg-slate-100">
+
+            <img [src]="product()?.image"
+                 [alt]="product()?.name"
+                 class="h-full w-full object-cover transition-transform
+                        duration-500 group-hover:scale-105" />
+
+            <span class="absolute left-3 top-3 rounded-full bg-white/90
+                         px-3 py-1 text-xs font-bold text-indigo-600
+                         shadow-sm backdrop-blur">
+                {{ product()?.category }}
+            </span>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="flex flex-col justify-center p-8">
+
+            <h2 class="text-3xl font-bold text-slate-900"
+                [title]="product()?.name">
+                {{ product()?.name }}
+            </h2>
+
+            <p class="mt-4 text-base leading-7 text-slate-500">
+                {{ product()?.description }}
+            </p>
+
+            <div class="mt-8">
+                <span class="text-3xl font-extrabold text-slate-900">
+                    R$ {{ product()?.price }}
+                </span>
+            </div>
+
+            <button type="button"
+                    [disabled]="product()?.stock === 0"
+                    class="mt-8 w-full cursor-pointer rounded-xl bg-indigo-600
+                           px-6 py-4 text-base font-bold text-white shadow-sm
+                           transition-colors hover:bg-indigo-700
+                           focus:outline-none focus:ring-2
+                           focus:ring-indigo-500 focus:ring-offset-2
+                           disabled:cursor-not-allowed
+                           disabled:bg-slate-200
+                           disabled:text-slate-400">
+                Adicionar ao carrinho
+            </button>
+
+        </div>
+
+    </article>
+</div>
