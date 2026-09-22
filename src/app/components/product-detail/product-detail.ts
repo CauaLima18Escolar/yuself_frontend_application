@@ -1,5 +1,6 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../service/product-service';
+import { CartService } from '../../service/cart-service';
 
 @Component({
   imports: [],
@@ -9,6 +10,7 @@ import { ProductService } from '../../service/product-service';
 })
 export class ProductDetail implements OnInit {
   #productService = inject(ProductService);
+  #cartService = inject(CartService);
   protected product = signal<ProductType | null>(null);
   protected isLoading = signal<boolean>(false);
   protected id = input.required<number>();
@@ -30,5 +32,13 @@ export class ProductDetail implements OnInit {
         this.isLoading.set(false);
       }
     })
+  }
+
+  public onClickAddToCart() {
+    const product = this.product();
+
+    if (product) {
+      this.#cartService.add(product);
+    }
   }
 }

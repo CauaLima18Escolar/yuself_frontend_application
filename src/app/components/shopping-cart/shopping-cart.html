@@ -1,0 +1,22 @@
+<button type="button"
+    class="cursor-pointer fixed top-8 right-8 group inline-flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-950 text-zinc-100 border border-zinc-800 font-medium text-sm transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 select-none shadow-sm">
+
+    <!-- Wrapper do Ícone -->
+    <div class="relative flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"
+            class="w-5 h-5 text-zinc-300 group-hover:text-white transition-colors duration-200">
+            <circle cx="8" cy="21" r="1" />
+            <circle cx="19" cy="21" r="1" />
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+        </svg>
+
+        <span
+            class="absolute -top-2.5 -right-3 flex items-center justify-center min-w-[1.25rem] h-5 px-1 text-[11px] font-bold text-zinc-900 bg-zinc-200 rounded-full border-2 border-zinc-900 shadow-sm leading-none transition-transform duration-200">
+            {{ getItensAmount() > 99 ? '99+' : getItensAmount() }}
+        </span>
+
+    </div>
+
+    <span>Carrinho</span>
+</button>

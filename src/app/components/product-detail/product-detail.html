@@ -38,6 +38,7 @@
 
             <button type="button"
                     [disabled]="product()?.stock === 0"
+                    (click)="onClickAddToCart()"
                     class="mt-8 w-full cursor-pointer rounded-xl bg-indigo-600
                            px-6 py-4 text-base font-bold text-white shadow-sm
                            transition-colors hover:bg-indigo-700
